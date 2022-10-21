@@ -10,7 +10,7 @@ st.write("""
 ### по фотографиям фермы 
 """)
 
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='cv_project/res_models/4yolo_best.pt')
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='res_models/4yolo_best.pt')
 img_file = st.file_uploader('Choose file', type=['png', 'jpg', 'jpeg'], accept_multiple_files=False)
 if img_file:
     img = Image.open(img_file)

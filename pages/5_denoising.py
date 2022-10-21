@@ -72,19 +72,19 @@ resize = T.Compose(
 
 
 model = AE()
-model.load_state_dict(torch.load('cv_project/res_models/5_denoising.pt'))
+model.load_state_dict(torch.load('res_models/5_denoising.pt'))
 model.eval()
 
-img_file = st.file_uploader('Choose file', type=['png', 'jpg', 'jpeg'], accept_multiple_files=False)
-if img_file:
-    img = Image.open(img_file)
-    img = trans(img.convert("L")) 
-    original_size = img.squeeze(0).shape
-    img_pr = resize(img)
+img_file5 = st.file_uploader('Choose file', type=['png', 'jpg', 'jpeg'], accept_multiple_files=False)
+if img_file5:
+    img5 = Image.open(img_file5)
+    img5 = trans(img5.convert("L")) 
+    original_size = img5.squeeze(0).shape
+    img_pr = resize(img5)
     to_orig_size = T.Compose([T.Resize(original_size)])
     results = to_orig_size(model(torch.unsqueeze(img_pr,0)))
     st.write('## Оригинальное изображение')
-    st.image(img.squeeze(0).detach().cpu().numpy(), use_column_width = True)
+    st.image(img5.squeeze(0).detach().cpu().numpy(), use_column_width = True)
     st.write('## Очищенное изображение')
     st.image(results.detach().cpu().numpy()[0][0], use_column_width = True)
     
