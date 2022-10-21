@@ -32,8 +32,14 @@ def predict_multi(model, top, img):
 st.write('''
 # Classification
 
+[Animal Image Dataset (90 Different Animals)](https://www.kaggle.com/datasets/iamsouravbanerjee/animal-image-dataset-90-different-animals)
+
 ''')
 
+url = 'https://storage.googleapis.com/kaggle-datasets-images/1554380/2561346/c14cd64fb06842ad190298f9f4efaa49/dataset-cover.png?t=2021-08-26-19-14-08'
+img = Image.open(requests.get(url, stream=True).raw)
+st.image(img, caption='', use_column_width=False)
+image=None
 way = st.radio('Выбери способ загрузки изображения', ['По URL-ссылке', 'С компьютера'])
 
 if way == 'По URL-ссылке':
@@ -57,11 +63,12 @@ if way == 'С компьютера':
 model = st.radio('Выбери модель', ['Xception', 'ResNet50', 'ResNet18'])
 top = st.slider('', min_value=1, max_value=10, step=1, label_visibility="hidden")
 
-if model == 'Xception':
-    st.dataframe(data=predict_multi(xception, top, image), use_container_width=True)
+if image is not None:
+    if model == 'Xception':
+        st.dataframe(data=predict_multi(xception, top, image), use_container_width=True)
 
-if model == 'ResNet50':
-    st.dataframe(data=predict_multi(resnet50, top, image), use_container_width=True)
+    if model == 'ResNet50':
+        st.dataframe(data=predict_multi(resnet50, top, image), use_container_width=True)
 
-if model == 'ResNet18':
-    st.dataframe(data=predict_multi(resnet18, top, image), use_container_width=True)
+    if model == 'ResNet18':
+        st.dataframe(data=predict_multi(resnet18, top, image), use_container_width=True)

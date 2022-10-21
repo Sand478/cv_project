@@ -18,7 +18,6 @@ with open('imagenet_classes.txt', 'r') as f:
 
 st.write('''
 # Xception
-
 ''')
 
 way = st.radio('Выбери способ загрузки изображения', ['По URL-ссылке', 'С компьютера'])
