@@ -56,7 +56,7 @@ class Generator(nn.Module):
 
         return x
 
-generator = torch.load('generator.pt')
+generator = torch.load('res_models/generator.pt')
 
 st.write('''
 # Conditional GAN

@@ -12,11 +12,11 @@ import torchvision.transforms as T
 
 import matplotlib.pyplot as plt
 
-xception = torch.load('classification/xception.pt')
-resnet50 = torch.load('classification/resnet50.pt')
-resnet18 = torch.load('classification/resnet18.pt')
+xception = torch.load('res_models/classification/xception.pt')
+resnet50 = torch.load('res_models/classification/resnet50.pt')
+resnet18 = torch.load('res_models/classification/resnet18.pt')
 
-classes = json.load(open("classification/classes.txt"))
+classes = json.load(open("2_ResNet18_classification/classes.txt"))
 
 def predict_multi(model, top, img):
     model.eval()
